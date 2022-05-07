@@ -12,7 +12,7 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Employee Deatails'),
+        title: Text('Employee Details'),
       ),
       body: _buildBody(),
     );
