@@ -8,7 +8,6 @@ class SearchScreenService {
   Future<dynamic> downloadFromApiRequest() async {
     var data = await ApiService()
         .get('http://www.mocky.io/v2/5d565297300000680030a986');
-    print("$data");
     return data
         .map<EmployeeModel>((entry) => EmployeeModel.fromJson(entry))
         .toList();

@@ -4,7 +4,7 @@ class EmployeeModel {
   dynamic? username;
   dynamic? email;
   dynamic? profileImage;
-  dynamic? address;
+  Address? address;
   dynamic? phone;
   dynamic? website;
   Company? company;
@@ -27,11 +27,11 @@ class EmployeeModel {
     email = json['email'];
     profileImage = json['profile_image'];
     address =
-        json['address'] != null ? new Address.fromJson(json['address']) : null;
+        json['address'] != null ? Address.fromJson(json['address']) : null;
     phone = json['phone'];
     website = json['website'];
     company =
-        json['company'] != null ? new Company.fromJson(json['company']) : null;
+        json['company'] != null ? Company.fromJson(json['company']) : null;
   }
 
   Map<String, dynamic> toJson() {

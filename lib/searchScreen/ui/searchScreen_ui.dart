@@ -35,22 +35,25 @@ class _SearchScreenUIState extends State<SearchScreenUI> {
   Widget _buildBody(SearchScreenProvider _provider) {
     return Column(
       children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: TextField(
-            decoration: InputDecoration(
-                hintText: "Seach here",
-                suffixIcon:
-                    IconButton(onPressed: () {}, icon: Icon(Icons.search))),
-            keyboardType: TextInputType.name,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9 ]"))
-            ],
-            textInputAction: TextInputAction.search,
-            maxLength: 50,
-            onChanged: (value) {
-              _provider.searchUsingName(value);
-            },
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: TextField(
+              decoration: InputDecoration(
+                  hintText: "Seach here",
+                  suffixIcon:
+                      IconButton(onPressed: () {}, icon: Icon(Icons.search))),
+              keyboardType: TextInputType.name,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9 ]"))
+              ],
+              textInputAction: TextInputAction.search,
+              maxLength: 50,
+              onChanged: (value) {
+                _provider.searchUsingName(value);
+              },
+            ),
           ),
         ),
         _provider.isLoading
@@ -61,18 +64,23 @@ class _SearchScreenUIState extends State<SearchScreenUI> {
                       return Column(
                         children: [
                           GestureDetector(
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 34, 230, 220),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Text(
-                                  _provider.employeeSearchResult[index].name),
+                            child: ListTile(
+                              title: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 34, 230, 220),
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Text(
+                                    _provider.employeeSearchResult[index].name),
+                              ),
                             ),
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => EmployeeScreen()));
+                                  builder: (context) => EmployeeScreen(
+                                        employeeDetails: _provider
+                                            .employeeSearchResult[index],
+                                      )));
                             },
                           )
                         ],
